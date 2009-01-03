@@ -1,0 +1,3 @@
+testfile
+*.beam
+test_*_output.txt
