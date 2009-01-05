@@ -18,7 +18,7 @@ proc_file(F, H) ->
 	eof ->
 	    ok;
 	_ ->
-	    [inc_word(H, list_to_binary(W)) || W <- string:tokens(L, [32, 10, 9])],
+	    [inc_word(H, list_to_binary(W)) || W <- string:tokens(L, [$\s, $\n, $\t])],
 	    proc_file(F, H)
     end.
 
