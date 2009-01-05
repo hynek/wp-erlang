@@ -10,8 +10,7 @@ wp([FileName]) ->
     proc_file(F, H),
     L = ets:tab2list(H),    
     ets:delete(H),
-    [ io:fwrite("~p ~s~n", [Count,  Word]) || {Word, Count} <- lists:reverse(lists:keysort(2, L))],
-    init:stop().
+    [ io:fwrite("~p ~s~n", [Count,  Word]) || {Word, Count} <- lists:reverse(lists:keysort(2, L))].
 
 proc_file(F, H) ->
     L = io:get_line(F, ''),
@@ -19,7 +18,7 @@ proc_file(F, H) ->
 	eof ->
 	    ok;
 	_ ->
-	    [inc_word(H, list_to_binary(string:strip(W))) || W <- string:tokens(L, [32, 10, 9])],
+	    [inc_word(H, list_to_binary(W)) || W <- string:tokens(L, [32, 10, 9])],
 	    proc_file(F, H)
     end.
 
