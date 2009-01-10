@@ -2,10 +2,16 @@
 %% Placed into Public Domain
 
 -module(wp).
--export([wp/1]).
+-export([wp/0, wp/1]).
 
+wp() ->
+    wp1(standard_io).
 wp([FileName]) ->
     {ok, F} = file:open(FileName, read),
+    wp1(F).
+
+
+wp1(F) ->
     H = ets:new(wp, [set]),
     proc_file(F, H),
     L = ets:tab2list(H),    
